@@ -16,7 +16,7 @@ public class ResponseUtils {
     }
 
     public GenericResponse getGenericErrorResponse(Exception exception, Integer statusCode) {
-        var date = dateUtils.getCurrentDate();
+        var date = dateUtils.getCurrentDateString();
         var errorMessage = exception.getMessage();
         logger.error(errorMessage);
         var errorResponse = new GenericResponse(statusCode, date, errorMessage);
@@ -25,7 +25,7 @@ public class ResponseUtils {
 
     public GenericResponse getGenericSuccessResponse(String message) {
         var statusCode = HttpStatus.OK.value();
-        var date = dateUtils.getCurrentDate();
+        var date = dateUtils.getCurrentDateString();
         logger.info(message);
         var successResponse = new GenericResponse(statusCode, date, message);
         return successResponse;

@@ -11,7 +11,9 @@ public class StringUtils {
         var lowerCaseFlag = false;
         var numberFlag = false;
 
-        isNotNullOrEmpty(propertyName, propertyValue);
+        if (propertyValue == null) {
+            throw new NotValidatedException(propertyName + " cannot be null");
+        }
 
         var minSize = 7;
         if (propertyValue.length() < minSize) {
@@ -36,21 +38,13 @@ public class StringUtils {
     }
 
     public void isValidEmail(String propertyName, String propertyValue) {
-        isNotNullOrEmpty(propertyName, propertyValue);
-
-        if (!propertyValue.contains("@") || !propertyValue.contains(".com")) {
-            var errorMessage = propertyName + " does not respect the email validations";
-            throw new NotValidatedException(errorMessage);
-        }
-    }
-
-    public void isNotNullOrEmpty(String propertyName, String propertyValue) {
         if (propertyValue == null) {
             throw new NotValidatedException(propertyName + " cannot be null");
         }
 
-        if(propertyValue.isEmpty()){
-            throw new NotValidatedException(propertyName + " cannot be empty");
+        if (!propertyValue.contains("@") || !propertyValue.contains(".com")) {
+            var errorMessage = propertyName + " does not respect the email validations";
+            throw new NotValidatedException(errorMessage);
         }
     }
 }

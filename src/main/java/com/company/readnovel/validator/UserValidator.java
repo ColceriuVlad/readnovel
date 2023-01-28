@@ -16,8 +16,6 @@ public class UserValidator {
     }
 
     public void validateUser(User user) {
-        stringUtils.isValidEmail("Email", user.email);
-        stringUtils.validatePropertyFormat("Username", user.username);
         stringUtils.validatePropertyFormat("Password", user.password);
         logger.info("Successfully validated user");
     }

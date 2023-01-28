@@ -5,19 +5,21 @@ import com.company.readnovel.model.Role;
 import com.company.readnovel.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/role")
 @RestController
 public class RoleController {
     private RoleService roleService;
 
-
     public RoleController(RoleService roleService) {
         this.roleService = roleService;
+    }
+
+    @GetMapping("{name}")
+    public ResponseEntity<Role> getRoleByName(@PathVariable String name) {
+        var role = roleService.getRoleByName(name);
+        return new ResponseEntity<>(role, HttpStatus.OK);
     }
 
     @PostMapping

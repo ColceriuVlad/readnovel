@@ -1,6 +1,9 @@
 package com.company.readnovel.configuration;
 
 
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InjectionPoint;
@@ -15,5 +18,17 @@ public class AppConfig {
     public Logger getLogger(InjectionPoint injectionPoint) {
         Class<?> classOnWired = injectionPoint.getMember().getDeclaringClass();
         return LoggerFactory.getLogger(classOnWired);
+    }
+
+    @Bean
+    @Scope("prototype")
+    public JwtBuilder jwtBuilder() {
+        return Jwts.builder();
+    }
+
+    @Bean
+    @Scope("prototype")
+    public JwtParser jwtParser() {
+        return Jwts.parser();
     }
 }

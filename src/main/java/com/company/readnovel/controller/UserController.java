@@ -1,7 +1,7 @@
 package com.company.readnovel.controller;
 
-import com.company.readnovel.model.User;
 import com.company.readnovel.model.dto.UserRegistrationDTO;
+import com.company.readnovel.model.dto.UserRolesDTO;
 import com.company.readnovel.service.UserService;
 import com.company.readnovel.utils.ResponseUtils;
 import org.springframework.http.HttpStatus;
@@ -20,9 +20,9 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
-        var user = userService.getUserById(id);
-        var response = new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<UserRolesDTO> getUserById(@PathVariable Integer id) {
+        var userRolesDTO = userService.getUserById(id);
+        var response = new ResponseEntity<>(userRolesDTO, HttpStatus.OK);
         return response;
     }
 
