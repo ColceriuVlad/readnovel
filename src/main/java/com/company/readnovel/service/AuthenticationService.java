@@ -32,7 +32,7 @@ public class AuthenticationService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         logger.info("Successfully authenticated");
 
-        var user = userService.getUserByUsername(password);
+        var user = userService.getUserByUsername(username);
         var message = jwtUtils.signToken(user);
         logger.info("Successfully signed jwt token");
         var response = responseUtils.getGenericSuccessResponse(message);

@@ -1,5 +1,6 @@
 package com.company.readnovel.controller;
 
+import com.company.readnovel.model.dto.AddUserDTO;
 import com.company.readnovel.model.dto.UserRegistrationDTO;
 import com.company.readnovel.model.dto.UserRolesDTO;
 import com.company.readnovel.service.UserService;
@@ -29,6 +30,12 @@ public class UserController {
     @PostMapping
     public ResponseEntity insertUser(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         var response = userService.insertUser(userRegistrationDTO);
+        return new ResponseEntity(response, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity addRoleToUser(@RequestBody AddUserDTO addUserDTO) {
+        var response = userService.addRoleToUser(addUserDTO);
         return new ResponseEntity(response, HttpStatus.OK);
     }
 }

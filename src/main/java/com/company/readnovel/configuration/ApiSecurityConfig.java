@@ -27,6 +27,8 @@ public class ApiSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/authentication").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/user").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/role").permitAll()
                 .requestMatchers("/api/user/**").hasAuthority("admin")
                 .requestMatchers("/api/role/**").hasAuthority("admin")
                 .requestMatchers("/api/user").hasAuthority("admin")

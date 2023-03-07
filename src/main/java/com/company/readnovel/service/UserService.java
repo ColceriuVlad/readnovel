@@ -2,7 +2,9 @@ package com.company.readnovel.service;
 
 import com.company.readnovel.exceptions.NoSuchEntityException;
 import com.company.readnovel.model.GenericResponse;
+import com.company.readnovel.model.Role;
 import com.company.readnovel.model.User;
+import com.company.readnovel.model.dto.AddUserDTO;
 import com.company.readnovel.model.dto.UserRegistrationDTO;
 import com.company.readnovel.model.dto.UserRolesDTO;
 import com.company.readnovel.repository.UserRepository;
@@ -78,5 +80,14 @@ public class UserService implements UserDetailsService {
 
         var response = responseUtils.getGenericSuccessResponse("Successfully inserted user");
         return response;
+    }
+
+    public GenericResponse addRoleToUser(AddUserDTO addUserDTO) {
+        var user = getUserByUsername(addUserDTO.username);
+        var role = roleService.getRoleByName(addUserDTO.roleName);
+        user.addRole(role);
+        userRepository.save(user);
+        var genericResponse = responseUtils.getGenericSuccessResponse("Successfully added role " + role.name + " to user " + user.username);
+        return genericResponse;
     }
 }

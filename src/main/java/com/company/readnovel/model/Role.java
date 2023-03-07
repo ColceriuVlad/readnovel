@@ -1,5 +1,7 @@
 package com.company.readnovel.model;
 
+import com.company.readnovel.model.dto.AddUserDTO;
+import com.company.readnovel.model.dto.RoleRegistrationDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -20,5 +22,9 @@ public class Role {
 
     public Role() {
 
+    }
+
+    public Role(RoleRegistrationDTO roleRegistrationDTO) {
+        this.name = roleRegistrationDTO.name;
     }
 }
